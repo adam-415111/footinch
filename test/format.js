@@ -38,6 +38,24 @@ describe('#format:IMPERIAL', function () {
   });
 });
 
+describe('#format:METRIC-TO-IMPERIAL', function () {
+  // eslint-disable-next-line no-unused-vars
+  let xx = format.FT.to.FT.DEC(2);
+  const cases = {
+    "format.MM.to.FT.IN.DEC(2, [' ft ', ' in'])(-711.12)" : "-2 ft 4 in",
+    "format.MM.to.FT.IN.DEC(2, [' ft ', ' in'])(711.12)" : "2 ft 4 in",
+    "format.MM.to.FT.DEC(5, [' ft'])(711.12)" : "2.33307 ft"
+  };
+
+  Object.keys(cases).forEach(function (key) {
+    // console.log(str + " --> " + eval(str));
+    const data = cases[key];
+    it(key + ' --> ' + data, function() {
+      eval(key).should.equal(data);
+    });
+  });
+});
+
 describe('#format:BAD_INPUT', function () {
   const cases = [
     "format.FT.to.FT.DEC(2)('garbage')",
